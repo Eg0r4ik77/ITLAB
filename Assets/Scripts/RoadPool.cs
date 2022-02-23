@@ -13,34 +13,45 @@ public class RoadPool: MonoBehaviour
     [SerializeField]
     private Road _firstRoad;
 
+    private Road _currentRoad;
     private List<Road> spawnedRoads = new List<Road>();
 
     private void Start()
     {
+        _currentRoad = _firstRoad;
         spawnedRoads.Add(_firstRoad);
-        SpawnRoad();
-        SpawnRoad();
+
+        SpawnRoad(0);
+        SpawnRoad(1);
+        SpawnRoad(1);
+
     }
 
     private void Update()
     {
-        if(_player.position.z > spawnedRoads[spawnedRoads.Count - 1].GetFront().position.z - 60)
+        if(_player.position.z > _currentRoad.GetFront().position.z - 60)
         {
             InsertRoad();
         }        
     }
-    private void SpawnRoad() {
-        Road road = Instantiate(_roads[Random.Range(0, _roads.Length - 1)]);
+    private void SpawnRoad(int i) {
+        Road road = Instantiate(_roads[i]);
         road.transform.position = spawnedRoads[spawnedRoads.Count - 1].GetFront().position - road.GetBack().localPosition;
         spawnedRoads.Add(road);
+        _currentRoad = road;
 
     }
 
     private void InsertRoad() {
-        Road road = spawnedRoads[0];
-        spawnedRoads.Add(road);
-        road.transform.position = spawnedRoads[spawnedRoads.Count - 1].GetFront().position - road.GetBack().localPosition;
-        spawnedRoads.RemoveAt(0);
+        Road road;
+        do
+        {
+            road = spawnedRoads[Random.Range(0, spawnedRoads.Count)];
+        } while (_currentRoad.transform.position == road.transform.position);
+
+        road.transform.position = _currentRoad.GetFront().position - road.GetBack().localPosition;
+        _currentRoad = road;
+
     }
 
 }
