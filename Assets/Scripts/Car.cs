@@ -15,7 +15,6 @@ public class Car : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-       _movement.Move(new Vector3(horizontal, 0, 0), vertical);
+       _movement.Move(horizontal, vertical);
     }
-
 }
