@@ -1479,7 +1479,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a5eed5280304ce458740b02f4e2d4c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 808331074}
+  playerCar: {fileID: 808331074}
   _cars:
   - {fileID: 456283377}
   - {fileID: 1727472187}
@@ -2081,7 +2081,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf6e9cf5951ca4c4db83bfa1d56324f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 808331074}
+  playerCar: {fileID: 808331074}
   _roads:
   - {fileID: 1910945701}
   - {fileID: 792102176}
