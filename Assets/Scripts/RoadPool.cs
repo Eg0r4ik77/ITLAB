@@ -1,14 +1,14 @@
-using System.Collections.Generic;
 using UnityEngine;
 
-public class RoadPool: MonoBehaviour
+public class RoadPool: PrefabPool
 {
-    [SerializeField] private Transform _player;
+    [SerializeField]
+    private RoadPrefab[] _roads;
 
-    [SerializeField] private Road[] _roads;
-    [SerializeField] private Road _firstRoad;
+    [SerializeField]
+    private RoadPrefab _firstRoad;
 
-    private Road _currentRoad;
+    private RoadPrefab _currentRoad;
 
     private void Start()
     {
@@ -17,22 +17,27 @@ public class RoadPool: MonoBehaviour
 
     private void Update()
     {
-        if(_player.position.z > _currentRoad.GetFront().position.z - 60)
+        if(playerCar.position.z > _currentRoad.Front.z - distanceBetweenPlayerAndNewPrefab)
         {
-            InsertRoad();
+            Spawn();
         }        
     }
 
-    private void InsertRoad() {
-        Road road;
-        do
-        {
-            road = _roads[Random.Range(0,_roads.Length)];
-        } while (_currentRoad.transform.position == road.transform.position);
-
-        road.transform.position = _currentRoad.GetFront().position - road.GetBack().localPosition;
+    protected override void Spawn()
+    {
+        RoadPrefab road = _roads[GetPrefabIndexForSpawn()];
+        road.transform.position = _currentRoad.Front - road.LocalBack;
         _currentRoad = road;
-
     }
 
+    protected override int GetPrefabIndexForSpawn()
+    {
+        int roadIndex;
+        do
+        {
+            roadIndex = Random.Range(0, _roads.Length);
+        } while (_currentRoad.transform.position == _roads[roadIndex].transform.position);
+
+        return roadIndex;
+    }
 }

@@ -1,0 +1,76 @@
+using UnityEngine;
+
+public class CarPool : PrefabPool
+{
+    [SerializeField]
+    private CarPrefab[] _cars;
+
+    [SerializeField]
+    private Transform _leftBorder;
+
+    [SerializeField]
+    private Transform _rightBorder;
+
+    [SerializeField]
+    private float _cooldown;
+
+    private float _carWith;
+    private float _lastTime;
+    private int _carsInUseCount;
+
+    private void Awake()
+    {
+        _carWith = _cars[0].GetComponent<BoxCollider>().size.x;
+    }
+
+    private void Update()
+    {
+        if(_carsInUseCount < _cars.Length  && Time.time - _lastTime > _cooldown)
+        {
+            Spawn();
+        }
+
+        ResetUsedCars();
+    }
+
+    protected override void Spawn()
+    {
+        CarPrefab car = _cars[GetPrefabIndexForSpawn()];
+
+        Vector3 spawnPlace = new Vector3(Random.Range(_leftBorder.position.x + _carWith / 2, _rightBorder.position.x - _carWith / 2), playerCar.position.y, playerCar.position.z + distanceBetweenPlayerAndNewPrefab);
+        car.transform.position = spawnPlace;
+
+        UpdateSpawnParameters(car);
+    }
+
+    protected override int GetPrefabIndexForSpawn()
+    {
+        int carIndex;
+        do
+        {
+            carIndex = Random.Range(0, _cars.Length);
+        } while (_cars[carIndex].InUse);
+
+        return carIndex;
+    }
+
+    private void UpdateSpawnParameters(CarPrefab spawnedCar)
+    {
+        spawnedCar.SetUsage(true);
+        _lastTime = Time.time;
+        _cooldown = Random.Range(1.5f, 4f);
+        _carsInUseCount++;
+    }
+
+    private void ResetUsedCars()
+    {
+        for (int i = 0; i < _cars.Length; i++)
+        {
+            if (_cars[i].InUse && playerCar.position.z - _cars[i].transform.position.z > distanceBetweenPlayerAndNewPrefab)
+            {
+                _cars[i].SetUsage(false);
+                _carsInUseCount--;
+            }
+        }
+    }
+}
