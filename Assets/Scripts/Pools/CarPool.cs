@@ -64,11 +64,11 @@ public class CarPool : PrefabPool
 
     private void ResetUsedCars()
     {
-        for (int i = 0; i < _cars.Length; i++)
+        foreach(CarPrefab car in _cars)
         {
-            if (_cars[i].InUse && playerCar.position.z - _cars[i].transform.position.z > distanceBetweenPlayerAndNewPrefab)
+            if (car.InUse && playerCar.position.z - car.transform.position.z > distanceBetweenPlayerAndNewPrefab)
             {
-                _cars[i].SetUsage(false);
+                car.SetUsage(false);
                 _carsInUseCount--;
             }
         }

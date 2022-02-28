@@ -3,6 +3,6 @@ public class CarAheadMovement : CarMovement
 {
     private void Start()
     {
-        speed = 7f;
+        speed = 5f;
     }
 }

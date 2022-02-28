@@ -6,6 +6,7 @@ public abstract class PrefabPool : MonoBehaviour
     protected Transform playerCar;
 
     protected readonly float distanceBetweenPlayerAndNewPrefab = 60f;
+
     protected abstract void Spawn();
     protected abstract int GetPrefabIndexForSpawn();
 }
