@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(CameraMovement))]
 public class CameraController : MonoBehaviour
 {
     private CameraMovement _movement;
