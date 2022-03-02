@@ -58,7 +58,7 @@ public class CarPool : PrefabPool
     {
         spawnedCar.SetUsage(true);
         _lastTime = Time.time;
-        _cooldown = Random.Range(1.5f, 4f);
+        _cooldown = Random.Range(2f, 4f);
         _carsInUseCount++;
     }
 

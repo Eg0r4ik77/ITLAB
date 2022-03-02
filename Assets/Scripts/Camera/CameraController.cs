@@ -1,20 +1,21 @@
 using UnityEngine;
 
-[RequireComponent(typeof(CameraMovement))]
+[RequireComponent(typeof(CameraTransformSwitcher))]
 public class CameraController : MonoBehaviour
 {
-    private CameraMovement _movement;
+    private CameraTransformSwitcher _cameraSwitcher;
 
     private void Awake()
     {
-        _movement = GetComponent<CameraMovement>();
+        _cameraSwitcher = GetComponent<CameraTransformSwitcher>();
     }
 
-    void Update()
+    public void OnTransformedTo2D()
     {
-        if (Input.GetKey(KeyCode.Space))
-        {
-            StartCoroutine(_movement.SwitchTo2D());
-        }
+        _cameraSwitcher.SwitchCamera(false);
+    }
+    public void OnTransformedTo3D()
+    {
+        _cameraSwitcher.SwitchCamera(true);
     }
 }
