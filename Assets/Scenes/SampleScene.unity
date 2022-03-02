@@ -30521,6 +30521,10 @@ PrefabInstance:
       propertyPath: m_Convex
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7774825249415485450, guid: d7ab7fe70aa86b145a243e6445229351, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7774825249597506294, guid: d7ab7fe70aa86b145a243e6445229351, type: 3}
       propertyPath: m_Convex
       value: 0
@@ -30568,6 +30572,10 @@ PrefabInstance:
     - target: {fileID: 7774825250013948947, guid: d7ab7fe70aa86b145a243e6445229351, type: 3}
       propertyPath: m_LocalPosition.y
       value: 74.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 7774825250280586838, guid: d7ab7fe70aa86b145a243e6445229351, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7774825250558679639, guid: d7ab7fe70aa86b145a243e6445229351, type: 3}
       propertyPath: m_Mesh
