@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerCarMovement))]
@@ -16,26 +15,25 @@ public class PlayerController : MonoBehaviour
 
     private PlayerCarMovement _movement;
     private Transform _transform;
-
-    public event Action<bool> TransformedToAnotherSpace;
-    private bool _isTurned = false;
+    private GameSpaceManager _gameSpaceManager;
 
     private void Awake()
     {
         _movement = GetComponent<PlayerCarMovement>();
         _transform = GetComponent<Transform>();
+        _gameSpaceManager = gameObject.AddComponent<GameSpaceManager>();
     }
 
     private void OnEnable()
     {
-        TransformedToAnotherSpace += _camera.OnTransformed;
-        TransformedToAnotherSpace += _carConverter.ConvertCars;
+        _gameSpaceManager.GameSpaceChanged += _camera.Transform;
+        _gameSpaceManager.GameSpaceChanged += _carConverter.ConvertCars;
     }
 
     private void OnDisable()
     {
-        TransformedToAnotherSpace -= _camera.OnTransformed;
-        TransformedToAnotherSpace -= _carConverter.ConvertCars;
+        _gameSpaceManager.GameSpaceChanged -= _camera.Transform;
+        _gameSpaceManager.GameSpaceChanged -= _carConverter.ConvertCars;
     }
 
     void Update()
@@ -43,20 +41,19 @@ public class PlayerController : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-       _movement.Shift(horizontal, vertical);
-
-        float distance1 = _transform.position.z - _specialRoad.Back.z;
-        if (distance1 > 0 && distance1 < 1 && !_isTurned)
+        float distanceBeforeSwitchingTo2D = _transform.position.z - _specialRoad.Back.z;
+        float distanceBeforeSwitchingTo3D = _specialRoad.Front.z - _transform.position.z;
+       
+        _movement.Shift(horizontal, vertical);
+        
+        if (Mathf.Abs(distanceBeforeSwitchingTo2D) < 1)
         {
-            _isTurned = true;
-            TransformedToAnotherSpace?.Invoke(false);
+            _gameSpaceManager.TryChangeSpace(GameSpace.Space2D);
         }
 
-        float distance2 = _specialRoad.Front.z - _transform.position.z;
-        if (distance2 > 0 && distance2 < 1 && _isTurned)
+        if (Mathf.Abs(distanceBeforeSwitchingTo3D) < 1)
         {
-            _isTurned = false;
-            TransformedToAnotherSpace?.Invoke(true);
+            _gameSpaceManager.TryChangeSpace(GameSpace.Space3D);
         }
     }
 }

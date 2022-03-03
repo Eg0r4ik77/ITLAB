@@ -1,17 +1,17 @@
 using UnityEngine;
 
-[RequireComponent(typeof(CameraTransformSwitcher))]
+[RequireComponent(typeof(CameraTransformManager))]
 public class CameraController : MonoBehaviour
 {
-    private CameraTransformSwitcher _cameraSwitcher;
+    private CameraTransformManager _cameraTransformManager;
 
     private void Awake()
     {
-        _cameraSwitcher = GetComponent<CameraTransformSwitcher>();
+        _cameraTransformManager = GetComponent<CameraTransformManager>();
     }
 
-    public void OnTransformed(bool is2D)
+    public void Transform(GameSpace gameSpace)
     {
-        _cameraSwitcher.SwitchCamera(is2D);
+        _cameraTransformManager.SwitchCamera(gameSpace);
     }
 }

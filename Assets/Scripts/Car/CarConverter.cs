@@ -5,19 +5,19 @@ public class CarConverter : MonoBehaviour
     [SerializeField]
     private CarPrefab[] _carPrefabs;
 
-    public void ConvertCars(bool is2D)
+    public void ConvertCars(GameSpace gameSpace)
     {
         foreach(CarPrefab carPrefab in _carPrefabs)
         {
-            ConvertCar(carPrefab.GetCarComponents(), is2D);
+            ConvertCar(carPrefab.GetCarComponents(), gameSpace);
         }
     }
 
-    private void ConvertCar(MeshRenderer[] carComponents, bool is2D)
+    private void ConvertCar(MeshRenderer[] carComponents, GameSpace gameSpace)
     {
         foreach(MeshRenderer carComponent in carComponents)
         {
-            carComponent.enabled = is2D;
+            carComponent.enabled = gameSpace == GameSpace.Space2D ? false : true;
         }
     }
 }

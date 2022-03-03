@@ -1,9 +1,8 @@
 using System.Collections;
 using UnityEngine;
 
-public class CameraTransformSwitcher : MonoBehaviour
+public class CameraTransformManager : MonoBehaviour
 {
-    [SerializeField]
     private readonly float _switchTime = 0.4f;
     public Vector3 Offset { get; private set; }
     public float Angle { get; private set; }
@@ -26,7 +25,7 @@ public class CameraTransformSwitcher : MonoBehaviour
         Angle = _angleIn3D;
     }
 
-    public void SwitchCamera(bool is2D)
+    public void SwitchCamera(GameSpace gameSpace)
     {
         Vector3 startOffset = _offsetIn3D;
         Vector3 targetOffset = _offsetIn2D;
@@ -34,7 +33,7 @@ public class CameraTransformSwitcher : MonoBehaviour
         float startAngle = _angleIn3D;
         float targetAngle = _angleIn2D;
 
-        if (is2D)
+        if (gameSpace == GameSpace.Space3D)
         {
             (startOffset, targetOffset) = (targetOffset, startOffset);
             (startAngle, targetAngle) = (targetAngle, startAngle);

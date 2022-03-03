@@ -1,33 +1,28 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Transform))]
-[RequireComponent(typeof(CameraTransformSwitcher))]
+[RequireComponent(typeof(CameraTransformManager))]
 public class CameraMovement : MonoBehaviour
 {
     [SerializeField]
     private Transform _playerCar;
 
-    [SerializeField]
-    private float _offsetY = 12f;
-
-    [SerializeField]
-    private float _offsetZ = -8f;
-
-    [SerializeField]
-    private float deltaOffsetY = 5f;
+    private readonly float _offsetY = 12f;
+    private readonly float _offsetZ = -8f;
+    private readonly float deltaOffsetY = 5f;
 
     private Transform _transform;
 
-    private CameraTransformSwitcher _transformSwitcher;
+    private CameraTransformManager _transformSwitcher;
 
     private void Awake()
     {
         _transform = GetComponent<Transform>();
-        _transformSwitcher = GetComponent<CameraTransformSwitcher>();
+        _transformSwitcher = GetComponent<CameraTransformManager>();
     }
     private void Start()
     {
-        _transformSwitcher.Initialize(new Vector3(0, _offsetY, _offsetZ),new Vector3(0, _offsetY+ deltaOffsetY, -_offsetZ), _transform.eulerAngles.x, 90f);
+        _transformSwitcher.Initialize(new Vector3(0, _offsetY, _offsetZ),new Vector3(0, _offsetY+ deltaOffsetY, -_offsetZ-1), _transform.eulerAngles.x, 90f);
     }
 
     void Update()
