@@ -2,10 +2,11 @@ using UnityEngine;
 
 public class CarPrefab : MonoBehaviour
 {
-    public bool InUse{ get; private set; }
+    [SerializeField]
+    private MeshRenderer[] _carComponents;
 
-    public void SetUsage(bool inUse)
+    public MeshRenderer[] GetCarComponents()
     {
-        InUse = inUse;
+        return _carComponents;
     }
 }

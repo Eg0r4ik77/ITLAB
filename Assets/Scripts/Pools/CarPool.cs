@@ -3,7 +3,7 @@ using UnityEngine;
 public class CarPool : PrefabPool
 {
     [SerializeField]
-    private CarPrefab[] _cars;
+    private CarAheadPrefab[] _cars;
 
     [SerializeField]
     private Transform _leftBorder;
@@ -35,7 +35,7 @@ public class CarPool : PrefabPool
 
     protected override void Spawn()
     {
-        CarPrefab car = _cars[GetPrefabIndexForSpawn()];
+        CarAheadPrefab car = _cars[GetPrefabIndexForSpawn()];
 
         Vector3 spawnPlace = new Vector3(Random.Range(_leftBorder.position.x + _carWith / 2, _rightBorder.position.x - _carWith / 2), playerCar.position.y, playerCar.position.z + distanceBetweenPlayerAndNewPrefab);
         car.transform.position = spawnPlace;
@@ -54,7 +54,7 @@ public class CarPool : PrefabPool
         return carIndex;
     }
 
-    private void UpdateSpawnParameters(CarPrefab spawnedCar)
+    private void UpdateSpawnParameters(CarAheadPrefab spawnedCar)
     {
         spawnedCar.SetUsage(true);
         _lastTime = Time.time;
@@ -64,7 +64,7 @@ public class CarPool : PrefabPool
 
     private void ResetUsedCars()
     {
-        foreach(CarPrefab car in _cars)
+        foreach(CarAheadPrefab car in _cars)
         {
             if (car.InUse && playerCar.position.z - car.transform.position.z > distanceBetweenPlayerAndNewPrefab)
             {

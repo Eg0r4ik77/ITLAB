@@ -10,12 +10,8 @@ public class CameraController : MonoBehaviour
         _cameraSwitcher = GetComponent<CameraTransformSwitcher>();
     }
 
-    public void OnTransformedTo2D()
+    public void OnTransformed(bool is2D)
     {
-        _cameraSwitcher.SwitchCamera(false);
-    }
-    public void OnTransformedTo3D()
-    {
-        _cameraSwitcher.SwitchCamera(true);
+        _cameraSwitcher.SwitchCamera(is2D);
     }
 }

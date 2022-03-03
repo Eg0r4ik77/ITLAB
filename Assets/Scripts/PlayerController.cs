@@ -5,8 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(Transform))]
 public class PlayerController : MonoBehaviour
 {
-    private PlayerCarMovement _movement;
-    private Transform _transform;
+    [SerializeField]
+    private CarConverter _carConverter;
 
     [SerializeField]
     private CameraController _camera;
@@ -14,8 +14,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private RoadPrefab _specialRoad;
 
-    public event Action TransformedTo2D;    
-    public event Action TransformedTo3D;
+    private PlayerCarMovement _movement;
+    private Transform _transform;
+
+    public event Action<bool> TransformedToAnotherSpace;
+    private bool _isTurned = false;
 
     private void Awake()
     {
@@ -25,17 +28,15 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
-        TransformedTo2D += _camera.OnTransformedTo2D;
-        TransformedTo3D += _camera.OnTransformedTo3D;
+        TransformedToAnotherSpace += _camera.OnTransformed;
+        TransformedToAnotherSpace += _carConverter.ConvertCars;
     }
 
     private void OnDisable()
     {
-        TransformedTo2D -= _camera.OnTransformedTo2D;
-        TransformedTo3D -= _camera.OnTransformedTo3D;
+        TransformedToAnotherSpace -= _camera.OnTransformed;
+        TransformedToAnotherSpace -= _carConverter.ConvertCars;
     }
-
-    bool isTurned = false;
 
     void Update()
     {
@@ -45,17 +46,17 @@ public class PlayerController : MonoBehaviour
        _movement.Shift(horizontal, vertical);
 
         float distance1 = _transform.position.z - _specialRoad.Back.z;
-        if (distance1 > 0 && distance1 < 1 && !isTurned)
+        if (distance1 > 0 && distance1 < 1 && !_isTurned)
         {
-            isTurned = true;
-            TransformedTo2D?.Invoke();
+            _isTurned = true;
+            TransformedToAnotherSpace?.Invoke(false);
         }
 
         float distance2 = _specialRoad.Front.z - _transform.position.z;
-        if (distance2 > 0 && distance2 < 1 && isTurned)
+        if (distance2 > 0 && distance2 < 1 && _isTurned)
         {
-            isTurned = false;
-            TransformedTo3D?.Invoke();
+            _isTurned = false;
+            TransformedToAnotherSpace?.Invoke(true);
         }
     }
 }
