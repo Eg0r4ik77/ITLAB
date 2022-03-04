@@ -12,17 +12,17 @@ public class GameSpaceManager : MonoBehaviour
         _currentSpace = GameSpace.Space3D;
     }
 
-    private void SetSpace(GameSpace gameSpace)
-    {
-        _currentSpace = gameSpace;
-        OnGameSpaceChanged?.Invoke(gameSpace);
-    }
-
     public void TryChangeSpace(GameSpace targetSpace)
     {
         if(_currentSpace != targetSpace)
         {
             SetSpace(targetSpace);
         }
+    }
+
+    private void SetSpace(GameSpace gameSpace)
+    {
+        _currentSpace = gameSpace;
+        OnGameSpaceChanged?.Invoke(gameSpace);
     }
 }

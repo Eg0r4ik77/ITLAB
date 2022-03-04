@@ -19,6 +19,8 @@ public class CameraMovement : MonoBehaviour
     {
         _transform = GetComponent<Transform>();
         _transformSwitcher = GetComponent<CameraTransformManager>();
+
+        PauseManager.Instance.OnPaused += SetPause;
     }
     private void Start()
     {
@@ -30,10 +32,19 @@ public class CameraMovement : MonoBehaviour
         FollowPlayerCar();
     }
 
+    private void OnDestroy()
+    {
+        PauseManager.Instance.OnPaused -= SetPause;
+    }
+
     private void FollowPlayerCar()
     {  
         _transform.position = _playerCar.position + _transformSwitcher.Offset;
         _transform.rotation = Quaternion.Euler(_transformSwitcher.Angle, 0, 0);
     }
- 
+
+    private void SetPause(bool isPaused)
+    {
+        enabled = !isPaused;
+    }
 }

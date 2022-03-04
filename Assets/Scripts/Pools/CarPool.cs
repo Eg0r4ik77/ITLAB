@@ -21,16 +21,22 @@ public class CarPool : PrefabPool
     private void Awake()
     {
         _carWith = _cars[0].GetComponent<BoxCollider>().size.x;
+        PauseManager.Instance.OnPaused += SetPause;
     }
 
     private void Update()
     {
-        if(_carsInUseCount < _cars.Length  && Time.time - _lastTime > _cooldown)
-        {
-            Spawn();
-        }
+            if(_carsInUseCount < _cars.Length  && Time.time - _lastTime > _cooldown)
+            {
+                Spawn();
+            }
 
-        ResetUsedCars();
+            ResetUsedCars();
+    }
+    
+    private void OnDestroy()
+    {
+        PauseManager.Instance.OnPaused -= SetPause;
     }
 
     protected override void Spawn()
@@ -72,5 +78,10 @@ public class CarPool : PrefabPool
                 _carsInUseCount--;
             }
         }
+    }
+
+    private void SetPause(bool isPaused)
+    {
+        enabled = !isPaused;
     }
 }
