@@ -8,7 +8,13 @@ public class RoadPool: PrefabPool
     [SerializeField]
     private RoadPrefab _firstRoad;
 
+    [SerializeField]
+    private RoadPrefab _specialRoad;
+
     private RoadPrefab _currentRoad;
+
+    private float _specialRoadCoolDown = 30f;
+    private float _lastTime;
 
     private void Start()
     {
@@ -19,13 +25,17 @@ public class RoadPool: PrefabPool
     {
         if(playerCar.position.z > _currentRoad.Front.z - distanceBetweenPlayerAndNewPrefab)
         {
+            if (_currentRoad == _specialRoad)
+            {
+                _lastTime = Time.time;
+            }
             Spawn();
         }        
     }
 
     protected override void Spawn()
     {
-        RoadPrefab road = _roads[GetPrefabIndexForSpawn()];
+        RoadPrefab road = Time.time - _lastTime > _specialRoadCoolDown ? _specialRoad : _roads[GetPrefabIndexForSpawn()];
         road.transform.position = _currentRoad.Front - road.LocalBack;
         _currentRoad = road;
     }
