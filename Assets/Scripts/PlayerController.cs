@@ -26,14 +26,14 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
-        _gameSpaceManager.GameSpaceChanged += _camera.Transform;
-        _gameSpaceManager.GameSpaceChanged += _carConverter.ConvertCars;
+        _gameSpaceManager.OnGameSpaceChanged += _camera.Transform;
+        _gameSpaceManager.OnGameSpaceChanged += _carConverter.ConvertCars;
     }
 
     private void OnDisable()
     {
-        _gameSpaceManager.GameSpaceChanged -= _camera.Transform;
-        _gameSpaceManager.GameSpaceChanged -= _carConverter.ConvertCars;
+        _gameSpaceManager.OnGameSpaceChanged -= _camera.Transform;
+        _gameSpaceManager.OnGameSpaceChanged -= _carConverter.ConvertCars;
     }
 
     void Update()

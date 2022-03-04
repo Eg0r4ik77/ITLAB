@@ -4,8 +4,8 @@ public class GameSpaceManager : MonoBehaviour
 {
     private GameSpace _currentSpace;
 
-    public delegate void GameSpaceHandler(GameSpace gameSpace);
-    public event GameSpaceHandler GameSpaceChanged;
+    public delegate void GameSpaceChanged(GameSpace gameSpace);
+    public event GameSpaceChanged OnGameSpaceChanged;
 
     public GameSpaceManager()
     {
@@ -15,7 +15,7 @@ public class GameSpaceManager : MonoBehaviour
     private void SetSpace(GameSpace gameSpace)
     {
         _currentSpace = gameSpace;
-        GameSpaceChanged?.Invoke(gameSpace);
+        OnGameSpaceChanged?.Invoke(gameSpace);
     }
 
     public void TryChangeSpace(GameSpace targetSpace)
