@@ -18,14 +18,7 @@ public class PauseManager
     }
 
     public event Action<bool> OnPaused;
-    public void TrySetPaused(bool isPaused)
-    {
-        if (_isPaused != isPaused)
-        {
-            SetPaused(isPaused);
-        }
-    }
-    private void SetPaused(bool isPaused)
+    public void SetPaused(bool isPaused)
     {
         _isPaused = isPaused;
         OnPaused.Invoke(isPaused);

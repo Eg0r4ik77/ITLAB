@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerCarMovement))]
@@ -17,23 +18,26 @@ public class PlayerController : MonoBehaviour
     private Transform _transform;
     private GameSpaceManager _gameSpaceManager;
 
+    private int _startPlayerPosition;
+
+    public int Score { get; private set; }
+
+    public event Action<int> OnDied;
+
     private void Awake()
     {
         _movement = GetComponent<PlayerCarMovement>();
         _transform = GetComponent<Transform>();
-        _gameSpaceManager = gameObject.AddComponent<GameSpaceManager>();
-    }
 
-    private void OnEnable()
-    {
+        _gameSpaceManager = gameObject.AddComponent<GameSpaceManager>();
+
         _gameSpaceManager.OnGameSpaceChanged += _camera.Transform;
         _gameSpaceManager.OnGameSpaceChanged += _carConverter.ConvertCars;
     }
 
-    private void OnDisable()
+    private void Start()
     {
-        _gameSpaceManager.OnGameSpaceChanged -= _camera.Transform;
-        _gameSpaceManager.OnGameSpaceChanged -= _carConverter.ConvertCars;
+        _startPlayerPosition = (int)_transform.position.z;    
     }
 
     void Update()
@@ -43,17 +47,35 @@ public class PlayerController : MonoBehaviour
 
         float distanceBeforeSwitchingTo2D = _transform.position.z - _specialRoad.Back.z;
         float distanceBeforeSwitchingTo3D = _specialRoad.Front.z - _transform.position.z;
-       
-        _movement.Shift(horizontal, vertical);
-        
-        if (Mathf.Abs(distanceBeforeSwitchingTo2D) < 1)
-        {
-            _gameSpaceManager.TryChangeSpace(GameSpace.Space2D);
-        }
 
-        if (Mathf.Abs(distanceBeforeSwitchingTo3D) < 1)
+        if (_movement.enabled == true)
         {
-            _gameSpaceManager.TryChangeSpace(GameSpace.Space3D);
+            _movement.Shift(horizontal, vertical);
+            Score = (int)(_transform.position.z - _startPlayerPosition) / 4;
+
+            if (Mathf.Abs(distanceBeforeSwitchingTo2D) < 1)
+            {
+                _gameSpaceManager.TryChangeSpace(GameSpace.Space2D);
+            }
+
+            if (Mathf.Abs(distanceBeforeSwitchingTo3D) < 1)
+            {
+                _gameSpaceManager.TryChangeSpace(GameSpace.Space3D);
+            }
+        }
+    }
+
+    private void OnDestroy()
+    {
+        _gameSpaceManager.OnGameSpaceChanged -= _camera.Transform;
+        _gameSpaceManager.OnGameSpaceChanged -= _carConverter.ConvertCars;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.TryGetComponent(out CarAheadMovement movement))
+        {
+            OnDied.Invoke(Score);
         }
     }
 }

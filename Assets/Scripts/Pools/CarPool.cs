@@ -21,7 +21,7 @@ public class CarPool : PrefabPool
     private void Awake()
     {
         _carWith = _cars[0].GetComponent<BoxCollider>().size.x;
-        PauseManager.Instance.OnPaused += SetPause;
+        PauseManager.Instance.OnPaused += SetPaused;
     }
 
     private void Update()
@@ -36,7 +36,7 @@ public class CarPool : PrefabPool
     
     private void OnDestroy()
     {
-        PauseManager.Instance.OnPaused -= SetPause;
+        PauseManager.Instance.OnPaused -= SetPaused;
     }
 
     protected override void Spawn()
@@ -80,7 +80,7 @@ public class CarPool : PrefabPool
         }
     }
 
-    private void SetPause(bool isPaused)
+    private void SetPaused(bool isPaused)
     {
         enabled = !isPaused;
     }
