@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 
 public class UiController : MonoBehaviour
@@ -7,7 +6,7 @@ public class UiController : MonoBehaviour
     private PlayerController _playerController;
 
     [SerializeField]
-    private TMP_Text _scoreText;
+    private GameOverMenu _gameOverMenu;
 
     [SerializeField]
     private PauseMenu _pauseMenu;
@@ -15,14 +14,25 @@ public class UiController : MonoBehaviour
     [SerializeField]
     private MainMenu _mainMenu;
 
-    private void Update()
+    [SerializeField]
+    private GamePlayScreen _gamePlayScreen;
+
+    private void Awake()
     {
-        SetScoreText(_playerController.Score);
+        _gamePlayScreen.OnPauseButtonClicked += ShowPauseMenu;
     }
 
-    private void SetScoreText(int score)
+    private void Update()
     {
-        _scoreText.SetText(score.ToString());
+        if (_gamePlayScreen.enabled)
+        {
+            _gamePlayScreen.SetScoreText(_playerController.Score);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        _gamePlayScreen.OnPauseButtonClicked -= ShowPauseMenu;
     }
 
     public void SetMainMenu(bool isEnable)
@@ -30,12 +40,34 @@ public class UiController : MonoBehaviour
         _mainMenu.gameObject.SetActive(isEnable);
     }
 
-    public void SetPauseMenu(bool isEnable)
+    public void SetGameOverMenu(bool isEnable)
     {
-        _pauseMenu.gameObject.SetActive(isEnable);
         if (isEnable == true)
         {
-            _pauseMenu.Show(_playerController.Score);
+            PauseManager.Instance.SetPaused(true);
+            _gameOverMenu.Show(_playerController.Score);
+        }
+        else
+        {
+            _gameOverMenu.gameObject.SetActive(false);
+        }
+    }
+
+    private void ShowPauseMenu()
+    {
+        PauseManager.Instance.SetPaused(true);
+        _pauseMenu.Show(_playerController.Score);
+    }
+
+    public void SetGamePlayScreen(bool isEnable)
+    {
+        if (isEnable == true)
+        {
+            _gamePlayScreen.Show();
+        }
+        else
+        {
+            _gamePlayScreen.gameObject.SetActive(false);
         }
     }
 }

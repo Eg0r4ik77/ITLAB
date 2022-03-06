@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class GameBehaviour : MonoBehaviour
+public class GameScenario : MonoBehaviour
 {
     [SerializeField]
     private PlayerController _playerController;
@@ -16,7 +16,7 @@ public class GameBehaviour : MonoBehaviour
             PlayerPrefs.SetInt("BestScore", 0);
         }
 
-        _playerController.OnDied += ShowPauseMenu;
+        _playerController.OnDied += ShowGameOverMenu;
     }
 
     void Start()
@@ -29,20 +29,20 @@ public class GameBehaviour : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
             _uiController.SetMainMenu(false);
+            _uiController.SetGamePlayScreen(true);
             PauseManager.Instance.SetPaused(false);
         }   
     }
 
     private void OnDestroy()
     {
-        _playerController.OnDied -= ShowPauseMenu;
+        _playerController.OnDied -= ShowGameOverMenu;
     }
 
-    private void ShowPauseMenu(int score)
+    private void ShowGameOverMenu(int score)
     {
-        PauseManager.Instance.SetPaused(true);
         TryUpdateBestScore(score);
-        _uiController.SetPauseMenu(true);
+        _uiController.SetGameOverMenu(true);
     }
 
     private void TryUpdateBestScore(int score)

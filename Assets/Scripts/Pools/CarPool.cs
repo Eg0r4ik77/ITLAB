@@ -33,7 +33,7 @@ public class CarPool : PrefabPool
 
             ResetUsedCars();
     }
-    
+
     private void OnDestroy()
     {
         PauseManager.Instance.OnPaused -= SetPaused;

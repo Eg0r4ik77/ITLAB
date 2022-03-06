@@ -13,8 +13,13 @@ public class RoadPool: PrefabPool
 
     private RoadPrefab _currentRoad;
 
-    private float _specialRoadCoolDown = 30f;
+    private readonly float _specialRoadCoolDown = 30f;
     private float _lastTime;
+
+    private void Awake()
+    {
+        PauseManager.Instance.OnPaused += SetPaused;
+    }
 
     private void Start()
     {
@@ -23,19 +28,26 @@ public class RoadPool: PrefabPool
 
     private void Update()
     {
+        _lastTime += Time.deltaTime;
+
         if(playerCar.position.z > _currentRoad.Front.z - distanceBetweenPlayerAndNewPrefab)
         {
             if (_currentRoad == _specialRoad)
             {
-                _lastTime = Time.time;
+                _lastTime = 0;
             }
             Spawn();
         }        
     }
 
+    private void OnDestroy()
+    {
+        PauseManager.Instance.OnPaused -= SetPaused;
+    }
+
     protected override void Spawn()
     {
-        RoadPrefab road = Time.time - _lastTime > _specialRoadCoolDown ? _specialRoad : _roads[GetPrefabIndexForSpawn()];
+        RoadPrefab road =  _lastTime > _specialRoadCoolDown ? _specialRoad : _roads[GetPrefabIndexForSpawn()];
         road.transform.position = _currentRoad.Front - road.LocalBack;
         _currentRoad = road;
     }
@@ -49,5 +61,10 @@ public class RoadPool: PrefabPool
         } while (_currentRoad.transform.position == _roads[roadIndex].transform.position);
 
         return roadIndex;
+    }
+
+    private void SetPaused(bool isPaused)
+    {
+        enabled = !isPaused;
     }
 }
