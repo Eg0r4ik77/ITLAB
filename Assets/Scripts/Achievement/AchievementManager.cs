@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class AchievementManager : MonoBehaviour
@@ -14,17 +15,23 @@ public class AchievementManager : MonoBehaviour
     {
         foreach (Achievement achievement in _achievements)
         {
-            achievement.SetReceived(false);
+            achievement.SetReceived(Convert.ToBoolean(PlayerPrefs.GetInt(achievement.Id, 0)));
+            SetReceivedSprite(achievement);
         }
-        UpdateAchievementsSprites();
     }
 
-    public void UpdateAchievementsSprites()
+    public void UpdateAchievementsSprites(int score)
     {
         foreach (Achievement achievement in _achievements)
         {
-            Sprite sprite = achievement.IsReceived == true ? _unlockedSprite : _lockedSprite;
-            achievement.SetSprite(sprite);
+            achievement.SetReceived(score >= achievement.PointsCondition);
+            SetReceivedSprite(achievement);
         }
+    }
+
+    private void SetReceivedSprite(Achievement achievement)
+    {
+        Sprite sprite = achievement.IsReceived == true ? _unlockedSprite : _lockedSprite;
+        achievement.SetSprite(sprite);
     }
 }

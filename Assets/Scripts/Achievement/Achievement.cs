@@ -11,7 +11,7 @@ public class Achievement : MonoBehaviour
     [SerializeField]
     private Image _image;
 
-    public int AchievementPointsCondition => _pointsCondition;
+    public int PointsCondition => _pointsCondition;
     public string Id => $"Achievement {_pointsCondition}";
 
     public bool IsReceived { get; private set; }

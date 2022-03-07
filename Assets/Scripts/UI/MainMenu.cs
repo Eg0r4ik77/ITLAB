@@ -11,7 +11,13 @@ public class MainMenu : MonoBehaviour
     private Button _toAchievementsMenuButton;
 
     [SerializeField]
+    private Button _keyboardConfigurationButton;
+
+    [SerializeField]
     private AchievementsMenu _achievementsMenu;
+
+    [SerializeField]
+    private KeyboardConfiguration _keyboardConfiguration;
 
     private void Awake()
     {
@@ -21,10 +27,16 @@ public class MainMenu : MonoBehaviour
     private void Start()
     {
         _toAchievementsMenuButton.onClick.AddListener(ShowAchievementsMenu);
+        _keyboardConfigurationButton.onClick.AddListener(ShowKeyboardConfiguration);
     }
 
     private void ShowAchievementsMenu()
     {
         _achievementsMenu.Show();
+    }
+
+    private void ShowKeyboardConfiguration()
+    {
+        _keyboardConfiguration.Show();
     }
 }

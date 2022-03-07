@@ -15,6 +15,8 @@ public class GameScenario : MonoBehaviour
     private void Awake()
     {     
         _playerController.OnDied += ShowGameOverMenu;
+        _playerController.OnDied += _achievementManager.UpdateAchievementsSprites;
+
         _achievementManager.SetInitialAchievements();
         PauseManager.Instance.SetPaused(true);
     }
