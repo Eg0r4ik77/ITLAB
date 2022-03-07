@@ -17,6 +17,8 @@ public class GameScenario : MonoBehaviour
         _playerController.OnDied += ShowGameOverMenu;
         _playerController.OnDied += TryUpdateBestScore;
 
+        ExitGameButton.OnExitButtonClicked += ExitGame;
+
         _achievementManager.SetInitialAchievements();
         PauseManager.Instance.SetPaused(true);
     }
@@ -25,6 +27,7 @@ public class GameScenario : MonoBehaviour
     {
         _uiController.SetMainMenu(true);
     }
+
     private void Update()
     {
         if (Input.GetKey(KeyCode.Space))
@@ -38,6 +41,9 @@ public class GameScenario : MonoBehaviour
     private void OnDestroy()
     {
         _playerController.OnDied -= ShowGameOverMenu;
+        _playerController.OnDied -= TryUpdateBestScore;
+
+        ExitGameButton.OnExitButtonClicked -= ExitGame;
     }
 
     private void ShowGameOverMenu(int score)
@@ -50,5 +56,11 @@ public class GameScenario : MonoBehaviour
         int bestScore = Math.Max(score, PlayerPrefs.GetInt("BestScore", 0));
         PlayerPrefs.SetInt("BestScore", bestScore);
         _achievementManager.UpdateAchievementsSprites(bestScore);
+    }
+
+    private void ExitGame()
+    {   
+        TryUpdateBestScore(_playerController.Score);
+        Application.Quit();
     }
 }
