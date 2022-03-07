@@ -12,11 +12,11 @@ public class GameOverMenu : MonoBehaviour
     private TMP_Text _bestScoreText;
 
     [SerializeField]
-    private Button _restartButton;
+    private Button _toMenuButton;
 
     private void Awake()
     {
-        _restartButton.onClick.AddListener(OnRestartButtonClicked);
+        _toMenuButton.onClick.AddListener(OnToMenuButtonClicked);
     }
 
     private void Start()
@@ -31,7 +31,7 @@ public class GameOverMenu : MonoBehaviour
         _bestScoreText.SetText($"Best score:\n{PlayerPrefs.GetInt("BestScore", 0)}");
     }
 
-    private void OnRestartButtonClicked()
+    private void OnToMenuButtonClicked()
     {
         SceneManager.LoadScene(0);
     }

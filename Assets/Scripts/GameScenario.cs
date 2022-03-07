@@ -15,7 +15,7 @@ public class GameScenario : MonoBehaviour
     private void Awake()
     {     
         _playerController.OnDied += ShowGameOverMenu;
-        _playerController.OnDied += _achievementManager.UpdateAchievementsSprites;
+        _playerController.OnDied += TryUpdateBestScore;
 
         _achievementManager.SetInitialAchievements();
         PauseManager.Instance.SetPaused(true);
@@ -42,12 +42,13 @@ public class GameScenario : MonoBehaviour
 
     private void ShowGameOverMenu(int score)
     {
-        TryUpdateBestScore(score);
         _uiController.SetGameOverMenu(true);
     }
 
     private void TryUpdateBestScore(int score)
     {
-        PlayerPrefs.SetInt("BestScore", Math.Max(score, PlayerPrefs.GetInt("BestScore", 0)));
+        int bestScore = Math.Max(score, PlayerPrefs.GetInt("BestScore", 0));
+        PlayerPrefs.SetInt("BestScore", bestScore);
+        _achievementManager.UpdateAchievementsSprites(bestScore);
     }
 }

@@ -6328,7 +6328,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scoreText: {fileID: 1600272838}
   _bestScoreText: {fileID: 1702716322}
-  _restartButton: {fileID: 1569164198}
+  _toMenuButton: {fileID: 1569164198}
 --- !u!1001 &284507874
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9890,7 +9890,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Restart
+  m_text: To menu
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -16986,7 +16986,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scoreText: {fileID: 336240180}
   _bestScoreText: {fileID: 1344765730}
-  _restartButton: {fileID: 2004147744}
+  _toMenuButton: {fileID: 2004147744}
   _resumeButton: {fileID: 2040146112}
 --- !u!114 &781200048
 MonoBehaviour:
@@ -24160,7 +24160,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Restart
+  m_text: To menu
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -31694,7 +31694,7 @@ GameObject:
   - component: {fileID: 1569164199}
   - component: {fileID: 1569164198}
   m_Layer: 5
-  m_Name: Restart button
+  m_Name: To menu button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41394,7 +41394,7 @@ GameObject:
   - component: {fileID: 2004147745}
   - component: {fileID: 2004147744}
   m_Layer: 5
-  m_Name: Restart button
+  m_Name: To menu button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
