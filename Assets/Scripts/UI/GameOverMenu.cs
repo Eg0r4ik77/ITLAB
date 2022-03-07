@@ -28,7 +28,7 @@ public class GameOverMenu : MonoBehaviour
     {
         gameObject.SetActive(true);
         _scoreText.SetText($"Score:\n{score}");
-        _bestScoreText.SetText($"Best score:\n{PlayerPrefs.GetInt("BestScore")}");
+        _bestScoreText.SetText($"Best score:\n{PlayerPrefs.GetInt("BestScore", 0)}");
     }
 
     private void OnRestartButtonClicked()

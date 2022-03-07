@@ -13,7 +13,6 @@ public class SoundButtonSpriteChanger : MonoBehaviour
 
     private Button _soundButton;
     private Image _soundButtonImage;
-
     private void Awake()
     {
         _soundButton = GetComponent<Button>();

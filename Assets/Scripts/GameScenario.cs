@@ -9,20 +9,19 @@ public class GameScenario : MonoBehaviour
     [SerializeField]
     private UiController _uiController;
 
-    private void Awake()
-    {
-        if (PlayerPrefs.HasKey("BestScore") == false)
-        {
-            PlayerPrefs.SetInt("BestScore", 0);
-        }
+    [SerializeField]
+    private AchievementManager _achievementManager;
 
+    private void Awake()
+    {     
         _playerController.OnDied += ShowGameOverMenu;
+        _achievementManager.SetInitialAchievements();
+        PauseManager.Instance.SetPaused(true);
     }
 
     void Start()
     {
         _uiController.SetMainMenu(true);
-        PauseManager.Instance.SetPaused(true);
     }
     private void Update()
     {
@@ -47,6 +46,6 @@ public class GameScenario : MonoBehaviour
 
     private void TryUpdateBestScore(int score)
     {
-        PlayerPrefs.SetInt("BestScore", Math.Max(score, PlayerPrefs.GetInt("BestScore")));
+        PlayerPrefs.SetInt("BestScore", Math.Max(score, PlayerPrefs.GetInt("BestScore", 0)));
     }
 }
