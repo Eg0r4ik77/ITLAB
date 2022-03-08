@@ -1,5 +1,4 @@
 using UnityEngine;
-
 public class CarPool : PrefabPool
 {
     [SerializeField]
@@ -13,6 +12,9 @@ public class CarPool : PrefabPool
 
     [SerializeField]
     private float _cooldown;
+
+    public float CarsCooldownLeftBound { get; set; } = 2f;
+    public float CarsCooldownRightBound { get; set; } = 4f;
 
     private float _carWith;
     private float _lastTime;
@@ -64,7 +66,7 @@ public class CarPool : PrefabPool
     {
         spawnedCar.SetUsage(true);
         _lastTime = Time.time;
-        _cooldown = Random.Range(2f, 4f);
+        _cooldown = Random.Range(CarsCooldownLeftBound, CarsCooldownLeftBound);
         _carsInUseCount++;
     }
 
@@ -83,5 +85,25 @@ public class CarPool : PrefabPool
     private void SetPaused(bool isPaused)
     {
         enabled = !isPaused;
+    }
+
+    public float GetCarsAheadSpeed()
+    {
+        try
+        {
+            return _cars[0].GetMovementSpeed();
+        }
+        catch (System.IndexOutOfRangeException)
+        {
+            return 0;
+        }
+    }
+
+    public void SetCarsAheadSpeed(float speed)
+    {
+        foreach (CarAheadPrefab car in _cars)
+        {
+            car.SetMovementSpeed(speed);
+        }
     }
 }

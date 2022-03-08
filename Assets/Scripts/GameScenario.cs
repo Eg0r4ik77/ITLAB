@@ -12,6 +12,16 @@ public class GameScenario : MonoBehaviour
     [SerializeField]
     private AchievementManager _achievementManager;
 
+    [SerializeField]
+    private CarPool _carPool;
+
+    [SerializeField]
+    private PlayerCarMovement _playerCarMovement;
+
+    private GameComplicator _gameComplicator;
+
+    private bool isGameStarted;
+
     private void Awake()
     {     
         _playerController.OnDied += ShowGameOverMenu;
@@ -20,22 +30,30 @@ public class GameScenario : MonoBehaviour
         ExitGameButton.OnExitButtonClicked += ExitGame;
 
         _achievementManager.SetInitialAchievements();
+
         PauseManager.Instance.SetPaused(true);
     }
 
     void Start()
     {
         _uiController.SetMainMenu(true);
+        _gameComplicator = new GameComplicator(_playerCarMovement.Speed, _carPool.GetCarsAheadSpeed(), _carPool.CarsCooldownLeftBound, _carPool.CarsCooldownRightBound);
     }
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space) && isGameStarted == false)
         {
+            isGameStarted = true;
             _uiController.SetMainMenu(false);
             _uiController.SetGamePlayScreen(true);
             PauseManager.Instance.SetPaused(false);
         }   
+
+        if(isGameStarted == true)
+        {
+            TryComplicateGame();
+        }
     }
 
     private void OnDestroy()
@@ -56,6 +74,19 @@ public class GameScenario : MonoBehaviour
         int bestScore = Math.Max(score, PlayerPrefs.GetInt("BestScore", 0));
         PlayerPrefs.SetInt("BestScore", bestScore);
         _achievementManager.UpdateAchievementsSprites(bestScore);
+    }
+
+    private void TryComplicateGame()
+    {
+        if(_gameComplicator.DifficultyLevel < _gameComplicator._complicationPoints.Length && _playerController.Score >= _gameComplicator._complicationPoints[_gameComplicator.DifficultyLevel])
+        {
+            _gameComplicator.DifficultyLevel++;
+
+            _playerCarMovement.Speed = _gameComplicator.GetComplicatedSpeed();
+            _carPool.SetCarsAheadSpeed(_gameComplicator.GetComplicatedCarsAheadSpeed());
+            _carPool.CarsCooldownLeftBound = _gameComplicator.GetComplicatedCarsCooldownLeftBound();
+            _carPool.CarsCooldownRightBound = _gameComplicator.GetComplicatedCarsCooldownRightBound();
+        }
     }
 
     private void ExitGame()

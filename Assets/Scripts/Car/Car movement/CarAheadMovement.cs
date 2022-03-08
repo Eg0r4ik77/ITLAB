@@ -1,8 +1,7 @@
-using UnityEngine;
 public class CarAheadMovement : CarMovement
 {
-    private void Start()
+    public CarAheadMovement()
     {
-        speed = 5f;
+        Speed = 5f;
     }
 }

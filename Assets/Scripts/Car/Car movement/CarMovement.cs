@@ -4,7 +4,7 @@ using UnityEngine;
 public class CarMovement : MonoBehaviour
 {
     protected Rigidbody rigidBody;
-    protected float speed;
+    public float Speed { get; set; }
 
     private void Awake()
     {
@@ -24,7 +24,7 @@ public class CarMovement : MonoBehaviour
 
     private void Move()
     {
-        rigidBody.MovePosition(rigidBody.position + speed * Time.deltaTime * Vector3.forward);
+        rigidBody.MovePosition(rigidBody.position + Speed * Time.deltaTime * Vector3.forward);
     }
 
     private void SetPaused(bool isPaused)

@@ -10,15 +10,26 @@ public class PlayerCarMovement : CarMovement
 
     private readonly float _acceleration = 5f;
 
-    private void Start()
+    private bool _isSpedUp;
+
+    public PlayerCarMovement()
     {
-        speed = 10f;
+        Speed = 15f;
     }
 
     public void Shift(float horizontal_offset, float accelerationState)
     {
-        Vector3 resultDirection = rigidBody.position + (speed * horizontal_offset * Vector3.right + accelerationState * _acceleration * Vector3.forward) * Time.deltaTime;
+        Vector3 resultDirection = rigidBody.position + (Speed * horizontal_offset * Vector3.right + accelerationState * _acceleration * Vector3.forward) * Time.deltaTime;
         resultDirection.x = Mathf.Clamp(resultDirection.x, _leftBorder.position.x, _rightBorder.position.x);
         rigidBody.MovePosition(resultDirection);
+    }
+
+    public void TrySetSpeedUp(bool isSpedUp)
+    {
+        if (_isSpedUp != isSpedUp)
+        {
+            _isSpedUp = isSpedUp;
+            Speed = isSpedUp == true ? Speed + _acceleration : Speed - _acceleration;
+        }
     }
 }

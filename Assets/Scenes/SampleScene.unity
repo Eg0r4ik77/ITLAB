@@ -2630,6 +2630,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1034559064}
     m_Modifications:
+    - target: {fileID: -4043205576279601325, guid: 6786d61d19e0d1a46a6e2c710fd480b5, type: 3}
+      propertyPath: m_Size.x
+      value: 1.6046753
+      objectReference: {fileID: 0}
+    - target: {fileID: -4043205576279601325, guid: 6786d61d19e0d1a46a6e2c710fd480b5, type: 3}
+      propertyPath: m_Center.x
+      value: 0.031097412
+      objectReference: {fileID: 0}
     - target: {fileID: 1477293461077286, guid: 6786d61d19e0d1a46a6e2c710fd480b5, type: 3}
       propertyPath: m_Name
       value: Green car (1)
@@ -24447,6 +24455,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1034559064}
     m_Modifications:
+    - target: {fileID: -4043205576279601325, guid: 6786d61d19e0d1a46a6e2c710fd480b5, type: 3}
+      propertyPath: m_Size.x
+      value: 1.6004028
+      objectReference: {fileID: 0}
+    - target: {fileID: -4043205576279601325, guid: 6786d61d19e0d1a46a6e2c710fd480b5, type: 3}
+      propertyPath: m_Center.x
+      value: 0.031341553
+      objectReference: {fileID: 0}
     - target: {fileID: 1477293461077286, guid: 6786d61d19e0d1a46a6e2c710fd480b5, type: 3}
       propertyPath: m_Name
       value: Green car
@@ -41440,6 +41456,8 @@ MonoBehaviour:
   _playerController: {fileID: 808331077}
   _uiController: {fileID: 1535985263}
   _achievementManager: {fileID: 892412772}
+  _carPool: {fileID: 1034559065}
+  _playerCarMovement: {fileID: 808331078}
 --- !u!1 &2004147742
 GameObject:
   m_ObjectHideFlags: 0
@@ -41476,7 +41494,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.3146096, y: 0.14277732}
   m_AnchorMax: {x: 0.683, y: 0.2601938}
-  m_AnchoredPosition: {x: 5.8228, y: -19}
+  m_AnchoredPosition: {x: 5.822815, y: -19}
   m_SizeDelta: {x: -6.2897, y: 14.8986}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2004147744
@@ -44524,7 +44542,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3962448219397357722, guid: 61dee326894c34d4cb9c67a3a60dd690, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.000030517578
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3962448219397357722, guid: 61dee326894c34d4cb9c67a3a60dd690, type: 3}
       propertyPath: m_AnchoredPosition.y
