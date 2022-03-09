@@ -18,13 +18,16 @@ public class GameScenario : MonoBehaviour
     [SerializeField]
     private PlayerCarMovement _playerCarMovement;
 
+    [SerializeField]
+    private AudioManager _audioManager;
+
     private GameComplicator _gameComplicator;
 
     private bool isGameStarted;
 
     private void Awake()
     {     
-        _playerController.OnDied += ShowGameOverMenu;
+        _playerController.OnDied += EndGame;
         _playerController.OnDied += TryUpdateBestScore;
 
         ExitGameButton.OnExitButtonClicked += ExitGame;
@@ -37,6 +40,7 @@ public class GameScenario : MonoBehaviour
     void Start()
     {
         _uiController.SetMainMenu(true);
+        _audioManager.SetPausedMenuAudioClip();
         _gameComplicator = new GameComplicator(_playerCarMovement.Speed, _carPool.GetCarsAheadSpeed(), _carPool.CarsCooldownLeftBound, _carPool.CarsCooldownRightBound);
     }
 
@@ -48,6 +52,7 @@ public class GameScenario : MonoBehaviour
             _uiController.SetMainMenu(false);
             _uiController.SetGamePlayScreen(true);
             PauseManager.Instance.SetPaused(false);
+            _audioManager.SetGameplayAudioClip();
         }   
 
         if(isGameStarted == true)
@@ -58,14 +63,17 @@ public class GameScenario : MonoBehaviour
 
     private void OnDestroy()
     {
-        _playerController.OnDied -= ShowGameOverMenu;
+        _playerController.OnDied -= EndGame;
         _playerController.OnDied -= TryUpdateBestScore;
 
         ExitGameButton.OnExitButtonClicked -= ExitGame;
     }
 
-    private void ShowGameOverMenu(int score)
+    private void EndGame(int score)
     {
+        _audioManager.PlayExplosion();
+        _audioManager.SetPausedMenuAudioClip();
+
         _uiController.SetGameOverMenu(true);
     }
 
