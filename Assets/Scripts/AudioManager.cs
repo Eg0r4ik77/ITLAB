@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,6 +20,12 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     private Button[] _buttons;
 
+    [SerializeField]
+    private Button _pauseButton;
+
+    [SerializeField]
+    private Button _soundButton;
+
     private AudioSource _audioSource;
 
     private void Awake()
@@ -29,6 +36,11 @@ public class AudioManager : MonoBehaviour
         {
             button.onClick.AddListener(PlayButtonClicked);
         }
+
+        _pauseButton.onClick.AddListener(_audioSource.Pause);
+        _soundButton.onClick.AddListener(ChangeMuted);
+
+        _audioSource.mute = Convert.ToBoolean(PlayerPrefs.GetInt("Muted", 0));
     }
 
     private void SetAudioClip(AudioClip clip, bool isLooped)
@@ -45,7 +57,7 @@ public class AudioManager : MonoBehaviour
 
     public void SetGameplayAudioClip()
     {
-        SetAudioClip(_gameplayClips[Random.Range(0, _gameplayClips.Length)], true);
+        SetAudioClip(_gameplayClips[UnityEngine.Random.Range(0, _gameplayClips.Length)], true);
     }
 
     public void PlayExplosion()
@@ -56,5 +68,12 @@ public class AudioManager : MonoBehaviour
     public void PlayButtonClicked()
     {
         _audioSource.PlayOneShot(_buttonClicked);
+    }
+
+    private void ChangeMuted()
+    {
+        _audioSource.mute = !_audioSource.mute;
+        PlayerPrefs.SetInt("Muted", Convert.ToInt32(_audioSource.mute));
+        SetPausedMenuAudioClip();
     }
 }

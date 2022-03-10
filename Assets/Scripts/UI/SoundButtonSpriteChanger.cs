@@ -13,18 +13,17 @@ public class SoundButtonSpriteChanger : MonoBehaviour
 
     private Button _soundButton;
     private Image _soundButtonImage;
+
     private void Awake()
     {
         _soundButton = GetComponent<Button>();
         _soundButtonImage = GetComponent<Image>();
+
+        _soundButtonImage.sprite = PlayerPrefs.GetInt("Muted", 0) == 0 ? _soundOnSprite : _soundOffSprite;
+        _soundButton.onClick.AddListener(ChangeSoundMode);
     }
 
-    private void Start()
-    {
-        _soundButton.onClick.AddListener(ChangeSprite);
-    }
-
-    public void ChangeSprite()
+    private void ChangeSoundMode()
     {
         _soundButtonImage.sprite = _soundButtonImage.sprite == _soundOnSprite ? _soundOffSprite : _soundOnSprite;
     }

@@ -3,7 +3,7 @@ using UnityEngine;
 public class GameComplicator
 {
     public int DifficultyLevel { get; set; } = 0;
-    public readonly int[] _complicationPoints = { 20, 40, 60, 100, 120, 150, 170, 200, 220, 250, 270, 300, 320, 350, 370, 400, 420, 450, 470, 500 };
+    public readonly int[] _complicationPoints = { 20, 40, 60, 100, 120, 150, 170, 180, 200, 220, 250, 260, 270, 280, 300, 320, 350, 370, 400, 420, 450, 470, 500, 550, 600 };
 
     private readonly float _startPlayerSpeed;
     private readonly float _targetPlayerSpeed;

@@ -30,10 +30,11 @@ public class GameScenario : MonoBehaviour
         _playerController.OnDied += EndGame;
         _playerController.OnDied += TryUpdateBestScore;
 
-        ExitGameButton.OnExitButtonClicked += ExitGame;
-
         _achievementManager.SetInitialAchievements();
+        _gameComplicator = new GameComplicator(_playerCarMovement.Speed, _carPool.GetCarsAheadSpeed(), _carPool.CarsCooldownLeftBound, _carPool.CarsCooldownRightBound);
 
+
+        ExitGameButton.OnExitButtonClicked += ExitGame;
         PauseManager.Instance.SetPaused(true);
     }
 
@@ -41,18 +42,20 @@ public class GameScenario : MonoBehaviour
     {
         _uiController.SetMainMenu(true);
         _audioManager.SetPausedMenuAudioClip();
-        _gameComplicator = new GameComplicator(_playerCarMovement.Speed, _carPool.GetCarsAheadSpeed(), _carPool.CarsCooldownLeftBound, _carPool.CarsCooldownRightBound);
     }
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Space) && isGameStarted == false)
-        {
+        if (Input.GetKey(KeyCode.Space) && isGameStarted == false && _uiController.IsMainMenuEnabled == true)
+        {   
             isGameStarted = true;
+
             _uiController.SetMainMenu(false);
             _uiController.SetGamePlayScreen(true);
-            PauseManager.Instance.SetPaused(false);
+
             _audioManager.SetGameplayAudioClip();
+          
+            PauseManager.Instance.SetPaused(false);
         }   
 
         if(isGameStarted == true)

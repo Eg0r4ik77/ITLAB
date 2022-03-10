@@ -17,6 +17,8 @@ public class UiController : MonoBehaviour
     [SerializeField]
     private GamePlayScreen _gamePlayScreen;
 
+    public bool IsMainMenuEnabled => _mainMenu.IsEnabled;
+
     private void Awake()
     {
         _gamePlayScreen.OnPauseButtonClicked += ShowPauseMenu;

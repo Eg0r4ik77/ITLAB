@@ -10053,8 +10053,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.25300002, y: 0.15011111}
   m_AnchorMax: {x: 0.75000006, y: 0.85285187}
-  m_AnchoredPosition: {x: 0, y: -97}
-  m_SizeDelta: {x: 0.000061035156, y: 0}
+  m_AnchoredPosition: {x: 0, y: -108.01999}
+  m_SizeDelta: {x: 0.0001, y: 22.04}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &492922768
 MonoBehaviour:
@@ -10558,7 +10558,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5538005105701217367, guid: 51317cef189e0334587f0bd65d16f042, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5538005105701217367, guid: 51317cef189e0334587f0bd65d16f042, type: 3}
       propertyPath: m_AnchorMax.x
@@ -11447,11 +11447,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 916635675}
+  - {fileID: 1186231080}
   - {fileID: 1106930036}
   - {fileID: 1807260104}
   - {fileID: 1615833848}
   - {fileID: 520237803}
-  - {fileID: 1186231080}
   m_Father: {fileID: 1554047019}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -23235,7 +23235,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5538005105701217367, guid: 51317cef189e0334587f0bd65d16f042, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5538005105701217367, guid: 51317cef189e0334587f0bd65d16f042, type: 3}
       propertyPath: m_AnchorMax.x
@@ -24247,7 +24247,7 @@ RectTransform:
   m_Children:
   - {fileID: 679607402}
   m_Father: {fileID: 554122375}
-  m_RootOrder: 5
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -32379,6 +32379,7 @@ MonoBehaviour:
   _toAchievementsMenuButton: {fileID: 2023636498}
   _keyboardConfigurationButton: {fileID: 1996408114}
   _achievementsMenu: {fileID: 554122378}
+  _soundButton: {fileID: 57894046}
   _keyboardConfiguration: {fileID: 492922770}
 --- !u!4 &1603456552 stripped
 Transform:
@@ -32481,7 +32482,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5538005105701217367, guid: 51317cef189e0334587f0bd65d16f042, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5538005105701217367, guid: 51317cef189e0334587f0bd65d16f042, type: 3}
       propertyPath: m_AnchorMax.x
@@ -36276,7 +36277,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5538005105701217367, guid: 51317cef189e0334587f0bd65d16f042, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5538005105701217367, guid: 51317cef189e0334587f0bd65d16f042, type: 3}
       propertyPath: m_AnchorMax.x
@@ -40141,6 +40142,9 @@ MonoBehaviour:
   - {fileID: 662014634}
   - {fileID: 2040146112}
   - {fileID: 2004147744}
+  _pauseButton: {fileID: 1438183901}
+  _backPauseButton: {fileID: 0}
+  _soundButton: {fileID: 57894046}
 --- !u!82 &1952357705
 AudioSource:
   m_ObjectHideFlags: 0
@@ -40152,7 +40156,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

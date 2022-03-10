@@ -17,7 +17,12 @@ public class MainMenu : MonoBehaviour
     private AchievementsMenu _achievementsMenu;
 
     [SerializeField]
+    private Button _soundButton;
+
+    [SerializeField]
     private KeyboardConfiguration _keyboardConfiguration;
+
+    public bool IsEnabled => !(_achievementsMenu.isActiveAndEnabled || _keyboardConfiguration.isActiveAndEnabled);
 
     private void Awake()
     {
@@ -28,6 +33,11 @@ public class MainMenu : MonoBehaviour
     {
         _toAchievementsMenuButton.onClick.AddListener(ShowAchievementsMenu);
         _keyboardConfigurationButton.onClick.AddListener(ShowKeyboardConfiguration);
+    }
+
+    private void Update()
+    {
+        _toAchievementsMenuButton.enabled = _keyboardConfigurationButton.enabled = _soundButton.enabled = IsEnabled;
     }
 
     private void ShowAchievementsMenu()
