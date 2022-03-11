@@ -42,17 +42,11 @@ public class UiController : MonoBehaviour
         _mainMenu.gameObject.SetActive(isEnable);
     }
 
-    public void SetGameOverMenu(bool isEnable)
+    public void SetGameOverMenu()
     {
-        if (isEnable == true)
-        {
-            PauseManager.Instance.SetPaused(true);
-            _gameOverMenu.Show(_playerController.Score);
-        }
-        else
-        {
-            _gameOverMenu.gameObject.SetActive(false);
-        }
+         PauseManager.Instance.SetPaused(true);
+        //_gamePlayScreen.gameObject.SetActive(false);
+        _gameOverMenu.Show(_playerController.Score);
     }
 
     private void ShowPauseMenu()

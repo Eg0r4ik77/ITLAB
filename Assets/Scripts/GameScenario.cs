@@ -1,4 +1,7 @@
 using System;
+using System.Collections;
+using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class GameScenario : MonoBehaviour
@@ -20,6 +23,12 @@ public class GameScenario : MonoBehaviour
 
     [SerializeField]
     private AudioManager _audioManager;
+
+    [SerializeField]
+    private Animator _animator;
+
+    [SerializeField]
+    private GameObject _explosion;
 
     private GameComplicator _gameComplicator;
 
@@ -72,13 +81,19 @@ public class GameScenario : MonoBehaviour
         ExitGameButton.OnExitButtonClicked -= ExitGame;
     }
 
-    private void EndGame(int score)
+    private async void EndGame(int score)
     {
         _audioManager.PlayExplosion();
         _audioManager.SetPausedMenuAudioClip();
+        _playerController.gameObject.SetActive(false);
 
-        _uiController.SetGameOverMenu(true);
+        Instantiate(_explosion, _playerController.transform.position, Quaternion.identity);
+        await Task.Delay(500);
+
+        _animator.SetTrigger("isGameOver");
+        _uiController.SetGameOverMenu();
     }
+
 
     private void TryUpdateBestScore(int score)
     {

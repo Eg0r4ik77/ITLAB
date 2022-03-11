@@ -5,6 +5,9 @@ public class PauseMenu : GameOverMenu
     [SerializeField]
     private Button _resumeButton;
 
+    [SerializeField]
+    private GamePlayScreen _gamePlayScreen;
+
     private void Start()
     {
         _resumeButton.onClick.AddListener(OnResumeButtonClicked);
@@ -15,5 +18,6 @@ public class PauseMenu : GameOverMenu
     {
         PauseManager.Instance.SetPaused(false);
         gameObject.SetActive(false);
+        _gamePlayScreen.gameObject.SetActive(true);
     }
 }
