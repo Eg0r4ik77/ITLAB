@@ -45,7 +45,6 @@ public class UiController : MonoBehaviour
     public void SetGameOverMenu()
     {
          PauseManager.Instance.SetPaused(true);
-        //_gamePlayScreen.gameObject.SetActive(false);
         _gameOverMenu.Show(_playerController.Score);
     }
 

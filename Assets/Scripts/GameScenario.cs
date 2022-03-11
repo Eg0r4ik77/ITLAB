@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -93,7 +91,6 @@ public class GameScenario : MonoBehaviour
         _animator.SetTrigger("isGameOver");
         _uiController.SetGameOverMenu();
     }
-
 
     private void TryUpdateBestScore(int score)
     {

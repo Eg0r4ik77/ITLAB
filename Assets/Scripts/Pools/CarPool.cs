@@ -28,12 +28,13 @@ public class CarPool : PrefabPool
 
     private void Update()
     {
-            if(_carsInUseCount < _cars.Length  && Time.time - _lastTime > _cooldown)
-            {
-                Spawn();
-            }
+        _lastTime += Time.deltaTime;
+        if(_carsInUseCount < _cars.Length  && _lastTime > _cooldown)
+        {
+            Spawn();
+        }
 
-            ResetUsedCars();
+        ResetUsedCars();
     }
 
     private void OnDestroy()
@@ -65,7 +66,7 @@ public class CarPool : PrefabPool
     private void UpdateSpawnParameters(CarAheadPrefab spawnedCar)
     {
         spawnedCar.SetUsage(true);
-        _lastTime = Time.time;
+        _lastTime = 0;
         _cooldown = Random.Range(CarsCooldownLeftBound, CarsCooldownLeftBound);
         _carsInUseCount++;
     }
