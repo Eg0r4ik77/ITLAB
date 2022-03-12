@@ -6,6 +6,9 @@ public class AchievementsMenu : MonoBehaviour
     [SerializeField]
     private Button _backButton;
 
+    [SerializeField]
+    private AchievementManager _achievementManager;
+
     private void Awake()
     {
         gameObject.SetActive(false);
@@ -15,6 +18,7 @@ public class AchievementsMenu : MonoBehaviour
     public void Show()
     {
         gameObject.SetActive(true);
+        _achievementManager.ShowAchievements();
     }
 
     public void OnBackButtonClicked()

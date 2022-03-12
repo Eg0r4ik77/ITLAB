@@ -3,6 +3,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(TMP_Text))]
+[RequireComponent(typeof(Animator))]
 public class Achievement : MonoBehaviour
 {
     [SerializeField]
@@ -17,10 +19,12 @@ public class Achievement : MonoBehaviour
     public bool IsReceived { get; private set; }
 
     private TMP_Text _conditionText;
+    private Animator _animator;
 
     private void Awake()
     {
         _conditionText = GetComponentInChildren<TMP_Text>();
+        _animator = GetComponent<Animator>();
     }
 
     private void Start()
@@ -37,5 +41,11 @@ public class Achievement : MonoBehaviour
     public void SetSprite(Sprite sprite)
     {
         _image.sprite = sprite;
+    }
+
+    public void Show()
+    {
+        gameObject.SetActive(true);
+        _animator.SetTrigger("isShown");
     }
 }

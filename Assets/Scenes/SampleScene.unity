@@ -10279,6 +10279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _backButton: {fileID: 1560829227}
+  _achievementManager: {fileID: 0}
 --- !u!4 &495885080 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 480072, guid: c0f33eb139fcff34c8de2acd690a23fe, type: 3}
@@ -10716,9 +10717,25 @@ PrefabInstance:
       propertyPath: m_fontStyle
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5538005105036328920, guid: 51317cef189e0334587f0bd65d16f042, type: 3}
+      propertyPath: m_fontColor.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5538005105701217360, guid: 51317cef189e0334587f0bd65d16f042, type: 3}
       propertyPath: m_Name
       value: Achievement 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5538005105701217366, guid: 51317cef189e0334587f0bd65d16f042, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5538005105701217366, guid: 51317cef189e0334587f0bd65d16f042, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5538005105701217366, guid: 51317cef189e0334587f0bd65d16f042, type: 3}
+      propertyPath: m_Color.g
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5538005105701217367, guid: 51317cef189e0334587f0bd65d16f042, type: 3}
       propertyPath: m_Pivot.x
@@ -10802,6 +10819,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5538005105701217367, guid: 51317cef189e0334587f0bd65d16f042, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5538005105959910545, guid: 51317cef189e0334587f0bd65d16f042, type: 3}
+      propertyPath: m_Color.a
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8754651260887700025, guid: 51317cef189e0334587f0bd65d16f042, type: 3}
@@ -11758,6 +11779,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _backButton: {fileID: 1186231081}
+  _achievementManager: {fileID: 892412772}
 --- !u!1001 &555342308
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23531,9 +23553,29 @@ PrefabInstance:
       propertyPath: m_fontStyle
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5538005105036328920, guid: 51317cef189e0334587f0bd65d16f042, type: 3}
+      propertyPath: m_fontColor.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5538005105036328920, guid: 51317cef189e0334587f0bd65d16f042, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5538005105701217360, guid: 51317cef189e0334587f0bd65d16f042, type: 3}
       propertyPath: m_Name
       value: Achievement 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5538005105701217366, guid: 51317cef189e0334587f0bd65d16f042, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5538005105701217366, guid: 51317cef189e0334587f0bd65d16f042, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5538005105701217366, guid: 51317cef189e0334587f0bd65d16f042, type: 3}
+      propertyPath: m_Color.g
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5538005105701217367, guid: 51317cef189e0334587f0bd65d16f042, type: 3}
       propertyPath: m_Pivot.x
@@ -23617,6 +23659,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5538005105701217367, guid: 51317cef189e0334587f0bd65d16f042, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5538005105959910545, guid: 51317cef189e0334587f0bd65d16f042, type: 3}
+      propertyPath: m_Color.a
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8754651260887700025, guid: 51317cef189e0334587f0bd65d16f042, type: 3}
@@ -32860,9 +32906,25 @@ PrefabInstance:
       propertyPath: m_fontStyle
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5538005105036328920, guid: 51317cef189e0334587f0bd65d16f042, type: 3}
+      propertyPath: m_fontColor.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5538005105701217360, guid: 51317cef189e0334587f0bd65d16f042, type: 3}
       propertyPath: m_Name
       value: Achievement 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5538005105701217366, guid: 51317cef189e0334587f0bd65d16f042, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5538005105701217366, guid: 51317cef189e0334587f0bd65d16f042, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5538005105701217366, guid: 51317cef189e0334587f0bd65d16f042, type: 3}
+      propertyPath: m_Color.g
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5538005105701217367, guid: 51317cef189e0334587f0bd65d16f042, type: 3}
       propertyPath: m_Pivot.x
@@ -32946,6 +33008,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5538005105701217367, guid: 51317cef189e0334587f0bd65d16f042, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5538005105959910545, guid: 51317cef189e0334587f0bd65d16f042, type: 3}
+      propertyPath: m_Color.a
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8754651260887700025, guid: 51317cef189e0334587f0bd65d16f042, type: 3}
@@ -36655,9 +36721,25 @@ PrefabInstance:
       propertyPath: m_fontStyle
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5538005105036328920, guid: 51317cef189e0334587f0bd65d16f042, type: 3}
+      propertyPath: m_fontColor.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5538005105701217360, guid: 51317cef189e0334587f0bd65d16f042, type: 3}
       propertyPath: m_Name
       value: Achievement 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 5538005105701217366, guid: 51317cef189e0334587f0bd65d16f042, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5538005105701217366, guid: 51317cef189e0334587f0bd65d16f042, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5538005105701217366, guid: 51317cef189e0334587f0bd65d16f042, type: 3}
+      propertyPath: m_Color.g
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5538005105701217367, guid: 51317cef189e0334587f0bd65d16f042, type: 3}
       propertyPath: m_Pivot.x
@@ -36741,6 +36823,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5538005105701217367, guid: 51317cef189e0334587f0bd65d16f042, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5538005105959910545, guid: 51317cef189e0334587f0bd65d16f042, type: 3}
+      propertyPath: m_Color.a
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8754651260887700025, guid: 51317cef189e0334587f0bd65d16f042, type: 3}

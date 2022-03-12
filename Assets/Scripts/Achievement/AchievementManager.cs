@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class AchievementManager : MonoBehaviour
@@ -33,5 +34,20 @@ public class AchievementManager : MonoBehaviour
     {
         Sprite sprite = achievement.IsReceived == true ? _unlockedSprite : _lockedSprite;
         achievement.SetSprite(sprite);
+    }
+
+    public async void ShowAchievements()
+    {
+        foreach(Achievement achievement in _achievements)
+        {
+            achievement.gameObject.SetActive(false);
+        }
+
+        foreach (Achievement achievement in _achievements)
+        {
+            achievement.Show();
+            await Task.Delay(200);
+        }
+
     }
 }
