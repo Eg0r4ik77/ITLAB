@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
         _startPlayerPosition = (int)_transform.position.z;    
     }
 
-    void Update()
+    private void Update()
     {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
@@ -53,13 +53,13 @@ public class PlayerController : MonoBehaviour
             _movement.Shift(horizontal, vertical);
             Score = (int)(_transform.position.z - _startPlayerPosition) / 4;
 
-            if (Mathf.Abs(distanceBeforeSwitchingTo2D) < 1)
+            if (Mathf.Abs(distanceBeforeSwitchingTo2D) < 1f)
             {
                 _gameSpaceManager.TryChangeSpace(GameSpace.Space2D);
                 _movement.TrySetSpeedUp(true);
             }
 
-            if (Mathf.Abs(distanceBeforeSwitchingTo3D) < 1)
+            if (Mathf.Abs(distanceBeforeSwitchingTo3D) < 1f)
             {
                 _gameSpaceManager.TryChangeSpace(GameSpace.Space3D);
                 _movement.TrySetSpeedUp(false);
