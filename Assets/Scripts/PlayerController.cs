@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
                 _movement.TrySetSpeedUp(true);
             }
 
-            if (Mathf.Abs(distanceBeforeSwitchingTo3D) < 1f)
+            if (Mathf.Abs(distanceBeforeSwitchingTo3D) < 9.5f)
             {
                 _gameSpaceManager.TryChangeSpace(GameSpace.Space3D);
                 _movement.TrySetSpeedUp(false);

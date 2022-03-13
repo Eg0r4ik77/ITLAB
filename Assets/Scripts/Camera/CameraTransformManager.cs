@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class CameraTransformManager : MonoBehaviour
 {
-    private readonly float _switchTime = 0.4f;
+    private readonly float _switchTime = 0.5f;
     public Vector3 Offset { get; private set; }
     public float Angle { get; private set; }
 
