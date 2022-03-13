@@ -38,8 +38,6 @@ public class GameScenario : MonoBehaviour
         _playerController.OnDied += TryUpdateBestScore;
 
         _achievementManager.SetInitialAchievements();
-        _gameComplicator = new GameComplicator(_playerCarMovement.Speed, _carPool.GetCarsAheadSpeed(), _carPool.CarsCooldownLeftBound, _carPool.CarsCooldownRightBound);
-
 
         ExitGameButton.OnExitButtonClicked += ExitGame;
         PauseManager.Instance.SetPaused(true);
@@ -47,6 +45,8 @@ public class GameScenario : MonoBehaviour
 
     void Start()
     {
+        _gameComplicator = new GameComplicator(_playerCarMovement.Speed, _carPool.GetCarsAheadSpeed(), _carPool.CarsCooldownLeftBound, _carPool.CarsCooldownRightBound);
+
         _uiController.SetMainMenu(true);
         _audioManager.SetPausedMenuAudioClip();
     }
