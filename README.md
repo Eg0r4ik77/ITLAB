@@ -23,6 +23,10 @@
 
 <p align="center"><img src="https://user-images.githubusercontent.com/62872005/158443785-fe5d824c-423f-41c1-9418-64d16e1b8bf5.png"></p>
 
+## Промо-ролик
+https://user-images.githubusercontent.com/62872005/158769266-d6cec9f8-f033-4b37-b41c-053d1ca30899.mp4
+
+
 ## Требования
 * Unity 2020.3.12f1
 * Visual Studio 2019
